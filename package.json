@@ -1,30 +1,23 @@
 {
-  "name": "project",
-  "version": "0.1.0",
-  "description": "SASS compile|autoprefix|minimize and live-reload dev server using Browsersync for static HTML",
-  "main": "public/index.html",
-  "author": "Hayder",
+  "name": "nameit",
+  "version": "1.0.0",
+  "description": "Landing page for natours",
+  "main": "index.js",
   "scripts": {
-    "build:sass": "sass  --no-source-map src/sass:public/css",
-    "copy:assets": "copyfiles -u 1 ./src/assets/**/* public",
-    "copy:html": "copyfiles -u 1 ./src/*.html public",
-    "copy": "npm-run-all --parallel copy:*",
-    "watch:assets": "onchange \"/src/assets/**/*\" -- npm run copy:assets",
-    "watch:html": "onchange \"src/*.html\" -- npm run copy:html",
-    "watch:sass": "sass  --no-source-map --watch src/sass:public/css",
-    "watch": "npm-run-all --parallel watch:*",
-    "serve": "browser-sync start --server public --files public",
-    "start": "npm-run-all copy --parallel watch serve",
-    "build": "npm-run-all copy:html copy:assets build:*",
-    "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r --no-map"
+    "watch": "sass --no-source-map sass/main.scss:css/style.css --watch",
+    "devserver": "live-server",
+    "start": "npm-run-all --parallel devserver watch",
+    "prefix": "postcss --use autoprefixer -b 'last 10 versions' css/style.css -o css/style.prefix.css",
+    "compress": "node-sass css/style.prefix.css css/style.min.css --output-style compressed",
+    "build": "npm-run-all prefix compress"
   },
-  "dependencies": {
+  "author": "Hayder",
+  "license": "ISC",
+  "devDependencies": {
     "autoprefixer": "^10.4.13",
-    "browser-sync": "^2.28.3",
-    "copyfiles": "^2.4.1",
-    "cssnano": "^5.1.15",
+    "node-sass": "^8.0.0",
     "npm-run-all": "^4.1.5",
-    "onchange": "^7.1.0",
+    "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "sass": "^1.58.3"
   }

@@ -1,0 +1,32 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+* {
+    font: inherit;
+}
+
+html {
+    // This defines what 1rem is
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+picture {
+    display: block;
+    max-width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 600;
+}
